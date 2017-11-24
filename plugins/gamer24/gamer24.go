@@ -43,10 +43,14 @@ func gamer24(session *wxweb.Session, msg *wxweb.ReceivedMessage) {
 
 	// 取收到的内容
 	if strings.Index(msg.Content, "3824") == 0 {
+		logs.Info("command '3824' received")
 		g24.Play()
+		logs.Info("game generated: " + buf.String())
 		session.SendText(buf.String(),
 			session.Bot.UserName, wxweb.RealTargetUserName(session, msg))
+		logs.Info("wechat message sent")
 		buf.Reset() // resets to empty for future writes
+		logs.Info("gamer24 exit gracefully")
 	}
 
 	// debug
